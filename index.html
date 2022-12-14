@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="fs" id="fs">
+    <div class="desktop" id="desktop">
+      <div
+        class="tile folder"
+        ondblclick='document.getElementById("files").style.display = "block"'
+        id="open_files"
+      >
+        <i class="mdi mdi-folder"></i>
+        <h3>mes fichiers</h3>
+      </div>
+    </div>
+    <div class="files" id="files">
+      <div class="band">
+        <h2 class="title">mes fichiers</h2>
+        <i
+          class="mdi mdi-close"
+          id="close_files"
+          onclick='document.getElementById("files").style.display = "none"'
+        ></i>
+      </div>
+      <iframe src="./files/" frameborder="0"></iframe>
+    </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
