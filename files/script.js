@@ -30,23 +30,14 @@ document.getElementById('back').addEventListener('click', () => {
     previous()
 })
 
-let dialog = document.getElementById('dialog')
-
 function openfile(type, file) {
-    if (type == "text") {
-        if (file == "1") {
-            gettxt("./text1.txt")
-        } if (file == "2") {
-            gettxt('./text2.txt')
-        }
-        if (file == "3") {
-            gettxt('./text3.txt')
-        }
-        return
-    }
-    if (type == "img") {
-        //not set
-    }
+    const message = JSON.stringify({
+        "order": 'open file',
+        "file": file,
+        "type": type,
+        "window": 'files'
+    });
+    window.parent.postMessage(message, '*');
 }
 
 function previous() {
@@ -150,38 +141,7 @@ function update() {
     }, 500);
 }
 
-function gettxt(path) {
-    a = path
-    let options = {
-        method: "post",
-        headers: {
-            'Content-Type': "application/json",
-            "content": JSON.stringify(a)
-        }
-    }
-
-    fetch('/api/text', options).then((response) => {
-        response.json().then(data => ({
-            data: data,
-            status: response.status
-        })
-        ).then(res => {
-            console.log(res)
-            document.getElementById('docIco').className = "mdi mdi-file-document"
-            document.getElementById('docName').innerHTML = "file name.png"
-            document.getElementById('docTxt').innerHTML = res.data
-            dialog.close()
-            dialog.showModal()
-        })
-    })
-}
-
 update()
-
-dialog.addEventListener('click', e => {
-    if (e.path.includes(document.querySelector("#dialog > div"))) return;
-    dialog.close()
-})
 
 let loginbox = document.getElementById('loginbox')
 loginbox.addEventListener('click', e => {

@@ -20,21 +20,21 @@
             <!-- MAIN FOLDER -->
             <h1 class="name">fichiers</h1>
 
-            <div class="tile folder" onclick="switchScene(2)">
+            <div class="tile folder" ondblclick="switchScene(2)">
                 <i class="mdi mdi-folder"></i>
                 <h3>recherches</h3>
                 <p>7 éléments</p>
             </div><!-- .tile.folder -->
 
-            <div class="tile folder" onclick="switchScene(3)">
+            <div class="tile folder" ondblclick="switchScene(3)">
                 <i class="mdi mdi-folder-lock" id="lockfolder1"></i>
                 <h3>sécurité <button class="alert" id="lockalert1"><span>!</span></button></h3>
                 <p>3 éléments</p>
             </div><!-- .tile.folder -->
 
-            <div class="tile form" onclick="openfile('text', 1)">
+            <div class="tile form" ondblclick="openfile('docx', 'credits')">
                 <i class="mdi mdi-file-document"></i>
-                <h3>file name.txt</h3>
+                <h3>credits.docx</h3>
                 <p>300 ko</p>
             </div><!-- .tile.form -->
 
@@ -54,13 +54,13 @@
         <!-- SUBFOLDER "RECHERCHES" -->
         <div class="scene" id="scene-2">
             <h1 class="name">recherches</h1>
-            <div class="tile form" onclick="openfile('text', '3')">
+            <div class="tile form" ondblclick="openfile('pdf', 'instructions')">
                 <i class="mdi mdi-file-document"></i>
-                <h3>instructions.txt</h3>
+                <h3>instructions.pdf</h3>
                 <p>120ko</p>
             </div><!-- .tile.form -->
 
-            <div class="tile form">
+            <div class="tile form" ondblclick="openfile('png', 'materiel')">
                 <i class="mdi mdi-file-image"></i>
                 <h3>materiel.png</h3>
                 <p>1,5mo</p>
@@ -69,7 +69,7 @@
         <div class="scene" id="scene-3">
             <h1 class="name">sécurité</h1>
 
-            <div class="tile form" onclick="openfile('text', '2')">
+            <div class="tile form" ondblclick="openfile('text', '2')">
                 <i class="mdi mdi-file-document"></i>
                 <h3>file name.txt</h3>
                 <p>300ko</p>
@@ -82,18 +82,6 @@
 
         </div>
     </div><!-- .stage -->
-
-    <dialog class="opendoc" id="dialog">
-        <div>
-            <i class="mdi docIco" id="docIco"></i>
-            <h1 id="docName" class="docName"></h1>
-            <i class="mdi mdi-close-circle" onclick="document.getElementById('dialog').close()"></i>
-            <div class="content">
-                <textarea id="docTxt" readonly aria-></textarea>
-            </div>
-        </div>
-
-    </dialog>
 
     <dialog class="loginbox" id="loginbox">
         <div>

@@ -7,8 +7,8 @@
 }
 
 iframe {
-  aspect-ratio: 9 / 5;
   width: 100%;
+  height: 100%;
   margin-top: 0px;
 }
 
@@ -32,18 +32,21 @@ iframe {
   padding-right: 3px;
   vertical-align: baseline;
   cursor: pointer;
-  border-top-right-radius: 5px;
   border-left: 1px rgba(0, 0, 0, 0.75) solid;
 }
 
-.files {
+.files,
+.cameras,
+.openfiles {
   backdrop-filter: blur(10px);
+  background-color: #ffffff1a;
   position: absolute;
   display: none;
-  width: 1000px;
-  top: 32px;
-  left: 100px;
-  border-radius: 5px;
+  /* width: 1000px;
+  top: 40px;
+  left: 100px; */
+  width: 100%;
+  height: 100%;
 }
 
 .band {
@@ -52,8 +55,6 @@ iframe {
   width: 100%;
   height: 40px;
   user-select: none;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 5px;
   border-bottom: 2px rgba(0, 0, 0, 0.75) solid;
 }
 
@@ -76,8 +77,20 @@ iframe {
   zoom: 400%;
 }
 
+.tile img {
+  width: 50px;
+  margin-top: 16px;
+  margin-left: -8px;
+  margin-bottom: 6.9px;
+}
+
 .tile h3 {
   margin-top: -10px;
+}
+
+.tile.app1 {
+  top: 15px;
+  left: 175px;
 }
 
 .tile.folder {

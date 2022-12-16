@@ -5,12 +5,22 @@ require("dotenv").config();
 
 const DB_UNLOCKED = new Datastore({ filename: "unlocked.db", autoload: true });
 
-const PORT = process.env.PORT || "5500";
+const PORT = process.env.PORT || "8080";
 console.log(PORT);
 
 startserver();
 
-let html, css, js, files_html, files_css, files_js, bg_jpg;
+let html,
+  css,
+  js,
+  files_html,
+  files_css,
+  files_js,
+  bg_jpg,
+  app_1,
+  camera_js,
+  camera_html,
+  camera_css;
 let somethingToUpdate = false;
 let updateArray = {};
 
@@ -18,6 +28,10 @@ async function startserver() {
   fs.readFile("./bg.jpg", (e, data) => {
     if (e) throw e;
     bg_jpg = data;
+  });
+  fs.readFile("./app_1.png", (e, data) => {
+    if (e) throw e;
+    app_1 = data;
   });
   fs.readFile("./index.html", (e, data) => {
     if (e) throw e;
@@ -45,6 +59,19 @@ async function startserver() {
     files_js = data.toLocaleString();
   });
 
+  fs.readFile("./camera/index.html", (e, data) => {
+    if (e) throw e;
+    camera_html = data.toLocaleString();
+  });
+  fs.readFile("./camera/style.css", (e, data) => {
+    if (e) throw e;
+    camera_css = data.toLocaleString();
+  });
+  fs.readFile("./camera/script.js", (e, data) => {
+    if (e) throw e;
+    camera_js = data.toLocaleString();
+  });
+
   fs.readFile("./admin/index.html", (e, data) => {
     if (e) throw e;
     admin_html = data.toLocaleString();
@@ -65,10 +92,15 @@ async function startserver() {
       return;
     }
     if (req.url === "/bg.jpg" && req.method === "GET") {
-        res.write(bg_jpg);
-        res.end();
-        return;
-      }
+      res.write(bg_jpg);
+      res.end();
+      return;
+    }
+    if (req.url === "/app_1.jpg" && req.method === "GET") {
+      res.write(app_1);
+      res.end();
+      return;
+    }
     if (req.url === "/style.css" && req.method === "GET") {
       res.write(css);
       res.end();
@@ -91,6 +123,21 @@ async function startserver() {
     }
     if (req.url === "/files/script.js" && req.method === "GET") {
       res.write(files_js);
+      res.end();
+      return;
+    }
+    if (req.url === "/camera/") {
+      res.write(camera_html);
+      res.end();
+      return;
+    }
+    if (req.url === "/camera/style.css" && req.method === "GET") {
+      res.write(camera_css);
+      res.end();
+      return;
+    }
+    if (req.url === "/camera/script.js" && req.method === "GET") {
+      res.write(camera_js);
       res.end();
       return;
     }
@@ -216,12 +263,14 @@ async function startserver() {
       res.end();
       return;
     }
-    if (req.url == "/api/text" && req.method == "POST") {
-      path = JSON.parse(req.headers.content);
+    if (req.url == "/api/getfile" && req.method == "POST") {
+      data = JSON.parse(req.headers.content)
+      path = data.path
+      type = data.type
 
-      fs.readFile(path, (e, data) => {
+      fs.readFile("./fs-files/" + path + ".html", (e, data) => {
         if (e) console.log(e);
-        res.write(JSON.stringify(data.toLocaleString()));
+        res.write(JSON.stringify({title: path + "." + type, html: data.toLocaleString()}));
         res.end();
       });
       return;
@@ -236,6 +285,24 @@ async function startserver() {
       var readStream = fs.createReadStream("." + req.url);
       readStream.pipe(res);
       return;
+    }
+    if (req.url === "/player/") {
+      fs.readFile("./player/index.html", (e, data) => {
+        if (e) throw e;
+        data;
+        res.write(data)
+        res.end()
+      });
+      return
+    }
+    if (req.url.startsWith("/player/")) {
+      fs.readFile("." + req.url, (e, data) => {
+        if (e) throw e;
+        data;
+        res.write(data)
+        res.end()
+      });
+      return
     }
     res.write("error 404");
     res.statusCode = "404";

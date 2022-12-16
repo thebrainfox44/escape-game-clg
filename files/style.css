@@ -3,10 +3,6 @@
     font-family: sans-serif;
 }
 
-html{
-    background-color: rgba(255, 255, 255, 0.208);
-}
-
 h3 {
     font-weight: 400;
     font-size: 16px;
@@ -24,8 +20,11 @@ p {
 }
 
 .tile {
+    display: flex;
+    justify-content: center;
     border-radius: 7px;
-    width: calc(30% - 17px);
+    width: 23%;
+    height: 250px;
     margin-bottom: 23px;
     text-align: center;
     border: 3px solid #e7e7e74c;
@@ -92,9 +91,9 @@ button.alert::after {
 
 i:not(.backI) {
     color: #00A8FF;
-    height: 55px;
-    margin-bottom: 20px;
-    font-size: 55px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 75px;
     display: block;
     line-height: 54px;
     cursor: pointer;
@@ -103,7 +102,8 @@ i:not(.backI) {
     height: fit-content;
     padding: 5px;
     border-radius: 4px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 i.mdi-file-document {
@@ -128,7 +128,7 @@ i.mdi-close-circle {
 .back {
     font-size: 26px;
     border-radius: 50px;
-    background: #00aaffaf;
+    background: #00aaffae;
     border: 0;
     color: #ffffff;
     width: 60px;
